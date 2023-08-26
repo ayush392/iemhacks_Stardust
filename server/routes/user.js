@@ -3,6 +3,7 @@ const {
   loginUser,
   signupUser,
   getAlldata,
+  userInfo,
 } = require("../controllers/userController");
 const requireAuth = require("../middleware/requireAuth");
 const User = require("../models/userModel");
@@ -33,5 +34,8 @@ router.post("/signup", signupUser);
 
 // GET all data
 router.get("/", getAlldata);
+
+// GET user details
+router.get("/info/:_id", getUser, userInfo);
 
 module.exports = router;

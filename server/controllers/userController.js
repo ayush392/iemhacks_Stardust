@@ -45,9 +45,18 @@ const getAlldata = async function (req, res) {
   }
 };
 
+const userInfo = async function (req, res) {
+  try {
+    // console.log(res.user, "userController 49");
+    res.json(res.user);
+  } catch (error) {
+    res.status(500).json({ message: e.message });
+  }
+};
 
 module.exports = {
   loginUser,
   signupUser,
   getAlldata,
+  userInfo
 };

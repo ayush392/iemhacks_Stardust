@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
+import "./App.css";
+import './mycss.css'
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Chat from "./pages/Chat";
+import Navbar from "./components/Navbar";
+import EditProfile from "./pages/EditProfile";
+import UserProfile from "./pages/UserProfile";
+import Pending from './pages/Pending'
 
 function App() {
+  const { user } = useAuthContext();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-[100vh]">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              user ? (
+                <>
+                  <Navbar />
+                  <Home />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route path="/edit/:id" element={<EditProfile />} />
+          <Route path="/user/:id/pending" element={<Pending />} />
+          <Route
+            path="/user/:id"
+            element={
+              <>
+                <Navbar />
+                <UserProfile />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={!user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/signup"
+            element={!user ? <Signup /> : <Navigate to="/" />}
+          />
+          <Route path="/chat" element={<Chat />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
