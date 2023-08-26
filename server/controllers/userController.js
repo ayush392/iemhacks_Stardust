@@ -54,9 +54,40 @@ const userInfo = async function (req, res) {
   }
 };
 
+const connectUser = async function (req, res) {
+  const { id, connectTo, status } = req.body;
+  console.log(typeof (status), status, 108)
+  try {
+    const x = await User.findByIdAndUpdate(
+      { _id: id },
+      { $push: { connections: connectTo } },
+      { new: true }
+    );
+    let y;
+    if (status === 'Accept') {
+      y = await User.findByIdAndUpdate(
+        { _id: id },
+        { $pull: { pendingReq: connectTo } },
+        { new: true }
+      );
+    } else {
+      y = await User.findByIdAndUpdate(
+        { _id: connectTo },
+        { $push: { pendingReq: id } },
+        { new: true }
+      );
+    }
+    // console.log(x, y, 129);
+    res.json(x);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   loginUser,
   signupUser,
   getAlldata,
-  userInfo
+  userInfo,
+  connectUser
 };

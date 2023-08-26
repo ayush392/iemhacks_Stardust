@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Card = ({ data, currUser, setCurrUser }) => {
   const { user } = useAuthContext();
   const [status, setStatus] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // console.log(currUser, 'card 11');
@@ -51,50 +52,51 @@ const Card = ({ data, currUser, setCurrUser }) => {
   return (
     <>
       {console.log(currUser, 'card51')}
-      <Link
-        to={`/user/${data._id}`}
-        className="border-[1px] border-gray-300 rounded-xl p-4 max-w-[400px] bg-white bg-opacity-80 cardnew shadow-xl ">
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-row space-x-5 justify-start">
+      <div
+        className="border-[1px] border-gray-300 rounded-xl p-4 max-w-[400px] bg-white bg-opacity-80 cardnew shadow-lg relative">
+        <Link to={`/user/${data._id}`} className="flex flex-row space-x-5 justify-start">
+          <img
+            src={data.profile_img}
+            alt="profile"
+            className="rounded-full h-16 w-16 object-cover"
+          />
+          <div className="my-auto">
+            <h4 className="font-semibold text-lg">
+              {data.fullName}
+              <span className="text-xs"> #{data.username}</span>
+            </h4>
 
-            <img
-              src={data.profile_img}
-              alt="profile"
-              className="rounded-full h-16 w-16 object-cover"
-            />
-            <div className="my-auto">
-              <h4 className="font-semibold text-lg">
-                {data.fullName}
-                <span className="text-xs"> #{data.username}</span>
-              </h4>
-
-              <p className="text-sm">{data.email}</p>
-            </div>
+            <p className="text-sm">{data.email}</p>
           </div>
-          <button
-            className="bg-blue-300 text-white p-1 rounded-xl px-2 py-1 text-xs font-semibold max-h-[30px]"
-            onClick={() => connectUser(data._id)}
-          >
-            {/* <img src="/connect.svg" alt="c" /> */}
-            <span className="text-black">{status.toUpperCase()}</span>
-          </button>
-        </div>
-
+        </Link>
+        <button
+          className="bg-blue-300 text-white p-1 rounded-xl px-2 py-1 text-xs font-semibold max-h-[30px] absolute right-4 top-4"
+          onClick={() => connectUser(data._id)}
+        >
+          {/* <img src="/connect.svg" alt="c" /> */}
+          <span className="text-black">{status.toUpperCase()}</span>
+        </button>
         <div>
-          {data.bio && <p className="text-sm mx-2">{data.bio}</p>}
-          {data.skills.length !== 0 && <h4 className="mx-2 mt-4 mb-2">Skills</h4>}
-          <div className="flex flex-wrap items-center">
-            {data.skills.map((skill, index) => (
-              <span
-                key={index}
-                className="bg-[#fcd34d]/80 rounded-full px-3 py-1 text-xs mb-1 mr-1"
-              >
-                {skill.toUpperCase()}
-              </span>
-            ))}
-          </div>
+          {<p className="text-sm mx-2">{data?.bio.charAt(51) == false ? data?.bio : data?.bio.slice(0, 50) + "..."}</p>}
+          {
+            data.skills.length > 0 &&
+            <>
+              <h4 className="mx-2 mt-4 mb-2">Skills</h4>
+              <div className="flex flex-wrap items-center">
+                {data.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="bg-[#fcd34d]/80 rounded-full px-3 py-1 text-xs mb-1 mr-1"
+                  >
+                    {skill.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+            </>
+          }
         </div>
-      </Link>
+
+      </div>
     </>
   );
 };

@@ -27,150 +27,135 @@ function Navbar() {
 
 
     return (
-        <div>
-            <>
-                <nav className="navbar align-items-center mobile">
-                    <Link to={'/'} className="navbar-brand ms-2 ps-1 text-4xl font-semibold font-tulpen">
-                        DC
-                    </Link>
+        <>
+            <nav className="navbar align-items-center mobile bg-white shadow-md">
+                <Link to={'/'} className="navbar-brand ms-2 ps-1 text-4xl font-semibold font-tulpen">
+                    DevConnect
+                </Link>
 
-                    <form onSubmit={e => e.preventDefault()} className='w-50' role="search">
-                        <div className="input-group">
-                            <input
-                                className="form-control"
-                                type="search"
-                                value={query}
-                                onChange={handleChange}
-                                placeholder="Search "
-                                aria-label="Search"
-                                aria-describedby="mobile-search-btn"
-                            />
-                            <button
-                                onClick={handleSearch}
-                                className="btn btn-outline-secondary btn-sm"
-                                type="submit"
-                                id="mobile-search-btn"
-                            >
-                                🔍
-                            </button>
-                        </div>
-                    </form>
-
-                    <div className=' me-2 pe-1'>
-                        {
-                            user
-                                ?
-                                <div className="btn-group">
-                                    <span
-                                        role='button'
-                                        data-bs-toggle="dropdown"
-                                        data-bs-display="static"
-                                        aria-expanded="false"
-                                    >
-                                        <img width='30px' src={`${currUser?.profile_img}`} alt="" />
-                                    </span>
-                                    <ul className="dropdown-menu dropdown-menu-start" style={{ translate: '-80%' }}>
-                                        <li><Link to={`../user/${currUser?._id}`} className="dropdown-item">Dashboard</Link></li>
-                                        <li><button
-                                            onClick={() =>
-                                                navigate(`/edit/${currUser?._id}`, { state: { userInfo: currUser } })
-                                            }
-                                            className="dropdown-item"
-                                        >
-                                            Edit Profile
-                                        </button></li>
-                                        <li><hr className="dropdown-divider" /></li>
-                                        <li><button className='dropdown-item' onClick={() => logout()}>Logout @{currUser?.username}</button></li>
-                                    </ul>
-                                </div>
-                                :
-                                <Link className='btn btn-outline-dark' to={'/login'}>Login</Link>
-                        }
+                <form onSubmit={e => e.preventDefault()} className='w-50' role="search">
+                    <div className="input-group">
+                        <input
+                            className="form-control"
+                            type="search"
+                            value={query}
+                            onChange={handleChange}
+                            placeholder="Search "
+                            aria-label="Search"
+                            aria-describedby="mobile-search-btn"
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="btn btn-outline-secondary btn-sm"
+                            type="submit"
+                            id="mobile-search-btn"
+                        >
+                            🔍
+                        </button>
                     </div>
-                </nav >
+                </form>
 
-
-                <nav className="navbar align-items-center desktop justify-between">
-                    <div className='flex flex-row items-center'>
-                        <Link to={'/'} className="navbar-brand ms-3 text-4xl font-semibold font-tulpen">
-                            DEVCONNECT
-                        </Link>
-
-                        <form onSubmit={e => e.preventDefault()} className='w-[70vw] max-w-[50vw] lg:max-w-[70vw] ml-10' role="search">
-                            <div className="input-group">
-                                <input
-                                    className="form-control"
-                                    type="search"
-                                    value={query}
-                                    onChange={handleChange}
-                                    placeholder="Search"
-                                    aria-label="Search"
-                                    aria-describedby="desktop-search-btn"
-                                />
-                                <button
-                                    onClick={handleSearch}
-                                    className="btn btn-primary text-blue-700 hover:text-white"
-                                    type="submit"
-                                    id="desktop-search-btn"
+                <div className=' me-2 pe-1'>
+                    {
+                        user
+                            ?
+                            <div className="btn-group">
+                                <span
+                                    role='button'
+                                    data-bs-toggle="dropdown"
+                                    data-bs-display="static"
+                                    aria-expanded="false"
                                 >
-                                    Search
-                                </button>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div className=' me-3'>
-                        {
-                            user
-                                ?
-                                <div className="btn-group">
-                                    <span
-                                        role='button'
-                                        data-bs-toggle="dropdown"
-                                        data-bs-display="static"
-                                        aria-expanded="false"
+                                    <img width='30px' className='rounded-full object-cover' src={`${currUser?.profile_img}`} alt="" />
+                                </span>
+                                <ul className="dropdown-menu dropdown-menu-start" style={{ translate: '-80%' }}>
+                                    <li><Link to={`../user/${currUser?._id}`} className="dropdown-item">Dashboard</Link></li>
+                                    <li><button
+                                        onClick={() =>
+                                            navigate(`/edit/${currUser?._id}`, { state: { userInfo: currUser } })
+                                        }
+                                        className="dropdown-item"
                                     >
-                                        <img width='30px' src={`${currUser?.profile_img}`} alt="" />
-                                    </span>
-                                    <ul className="dropdown-menu dropdown-menu-start" style={{ translate: '-80%' }}>
-                                        <li><Link to={`../user/${currUser?._id}`} className="dropdown-item">Dashboard</Link></li>
-                                        <li><button
-                                            onClick={() =>
-                                                navigate(`/edit/${currUser?._id}`, { state: { userInfo: currUser } })
-                                            }
-                                            className="dropdown-item"
-                                        >
-                                            Edit Profile
-                                        </button></li>
-                                        <li><hr className="dropdown-divider" /></li>
-                                        <li><button className='dropdown-item' onClick={() => logout()}>Logout @{currUser?.username}</button></li>
-                                    </ul>
-                                </div>
-                                :
-                                <Link className='btn btn-outline-dark' to={'/login'}>Login</Link>
-                        }
-                    </div>
-                </nav >
-            </>
-            {/* <br />
-            <nav className='flex flex-row space-x-3 justify-between items-center h-12 px-4 shadow-lg'>
-                <Link to={'/'} className="text-4xl font-semibold font-tulpen">
+                                        Edit Profile
+                                    </button></li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li><button className='dropdown-item' onClick={() => logout()}>Logout @{currUser?.username}</button></li>
+                                </ul>
+                            </div>
+                            :
+                            <Link className='btn btn-outline-dark' to={'/login'}>Login</Link>
+                    }
+                </div>
+            </nav >
+
+
+            <nav className="navbar align-items-center desktop justify-between bg-white shadow-md ">
+                {/* <div className='flex flex-row items-center'> */}
+                <Link to={'/'} className="navbar-brand ms-5 text-4xl font-semibold font-tulpen">
                     DEVCONNECT
                 </Link>
-                {user && (
-                    <div>
-                        <span>{user.email}</span>
-                        <button onClick={() => logout()}>Log Out</button>
+
+                <form onSubmit={e => e.preventDefault()} className='w-[800px] max-w-[70vw]' role="search">
+                    <div className="input-group">
+                        <input
+                            className="form-control"
+                            type="search"
+                            value={query}
+                            onChange={handleChange}
+                            placeholder="Search"
+                            aria-label="Search"
+                            aria-describedby="desktop-search-btn"
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="btn btn-primary text-blue-700 hover:text-white"
+                            type="submit"
+                            id="desktop-search-btn"
+                        >
+                            Search
+                        </button>
                     </div>
-                )}
-                {!user && (
-                    <div>
-                        <Link to={'/login'}>Login</Link>
-                        <Link to={'/signup'}>Signup</Link>
-                    </div>
-                )}
-            </nav> */}
-        </div>
+                </form>
+
+                {/* </div> */}
+                <div className=' me-5'>
+                    {
+                        user
+                            ?
+                            <>
+                                <span className='me-3'>{currUser?.email}</span>
+
+                                <div className="btn-group">
+
+                                    <span
+                                        role='button'
+                                        data-bs-toggle="dropdown"
+                                        data-bs-display="static"
+                                        aria-expanded="false"
+                                    >
+                                        <img width='30px' className='rounded-full object-cover' src={`${currUser?.profile_img}`} alt="" />
+                                    </span>
+                                    <ul className="dropdown-menu dropdown-menu-start" style={{ translate: '-80%' }}>
+                                        <li><Link to={`../user/${currUser?._id}`} className="dropdown-item">Dashboard</Link></li>
+                                        <li><button
+                                            onClick={() =>
+                                                navigate(`/edit/${currUser?._id}`, { state: { userInfo: currUser } })
+                                            }
+                                            className="dropdown-item"
+                                        >
+                                            Edit Profile
+                                        </button></li>
+                                        <li><hr className="dropdown-divider" /></li>
+                                        <li><button className='dropdown-item' onClick={() => logout()}>Logout @{currUser?.username}</button></li>
+                                    </ul>
+                                </div>
+                            </>
+                            :
+                            <Link className='btn btn-outline-dark' to={'/login'}>Login</Link>
+                    }
+                </div>
+            </nav >
+        </>
     )
 }
 

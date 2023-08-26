@@ -7,57 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 function Home() {
   const { user } = useAuthContext();
   const navigate = useNavigate()
-  let data2 = [
-    {
-      name: "Aaaa Bbbb",
-      email: "abcd@gmail.com",
-      bio: " Hey there! I am using DevConnect",
-      password: "123456",
-      username: "abcd",
-      education: {
-        school: "ABC School",
-        degree: "B. Abc.",
-        fieldOfStudy: "ABCD",
-        from: "20.02.2024",
-        to: "20.02.2025",
-      },
-      urls: {
-        linkedin: "www.linkedin.com/abcd",
-        portfolio: "abcd.com",
-        github: "www.github.com/abcd",
-      },
-      skills: [
-        "javascript",
-        "typescript",
-        "javascript",
-        "typescript",
-        "typescript",
-      ],
-      profile_img:
-        "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png",
-    },
-    {
-      name: "Abcd Abcd",
-      email: "abcd@gmil.com",
-      password: "123456",
-      username: "abcd",
-      education: {
-        school: "ABC School",
-        degree: "B. Abc.",
-        fieldOfStudy: "ABCD",
-        from: "20.02.2024",
-        to: "20.02.2025",
-      },
-      urls: {
-        linkedin: "www.linkedin.com/abcd",
-        portfolio: "abcd.com",
-        github: "www.github.com/abcd",
-      },
-      skills: ["ab", "ab", "ab", "ab", "ab"],
-      profile_img:
-        "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png",
-    },
-  ];
 
   const [data, setData] = useState("");
   const [currUser, setCurrUser] = useState(null);
