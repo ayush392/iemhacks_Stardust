@@ -16,4 +16,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user", userRoutes);
 
-app.listen(4000, () => console.log("server started in port 4000"));
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 4000;
+}
+app.listen(port, function () {
+  console.log(
+    "Express server listening on port %d in %s mode",
+    this.address().port,
+    app.settings.env
+  );
+});
