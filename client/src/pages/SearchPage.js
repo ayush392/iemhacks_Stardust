@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Card from "../components/Card";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function Home() {
+function SearchPage() {
   const { user } = useAuthContext();
-  const navigate = useNavigate();
+  const { query } = useParams();
 
-  const [data, setData] = useState("");
-  const [currUser, setCurrUser] = useState(null);
+  const [data, setData] = useState([]);
+  const [currUser, setCurrUser] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/user")
+    fetch(`http://localhost:4000/api/user/search/${query}`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((e) => console.log(e));
@@ -25,33 +25,12 @@ function Home() {
           console.log(json, "home73");
         })
         .catch((e) => console.log(e));
-  }, [user]);
+  }, [user, query]);
 
   return (
     <>
       <div className="px-3 mx-auto max-w-7xl">
-        {currUser ? (
-          <div className="flex flex-row items-center space-x-4 mx-4 py-2 my-4">
-            <Link
-              to={`/user/${currUser._id}`}
-              className="font-bold text-2xl pb-1"
-            >
-              {currUser?.fullName}
-            </Link>
-            <button
-              onClick={() =>
-                navigate(`/edit/${currUser._id}`, {
-                  state: { userInfo: currUser },
-                })
-              }
-            >
-              Edit
-            </button>
-            {/* <Link to={`/edit/${currUser._id}`} className="text-sm">Edit Profile</Link> */}
-          </div>
-        ) : (
-          <h3 className="">Loading...</h3>
-        )}
+        <h1>{query}</h1>
         <div className="m-auto max-w-sm md:max-w-3xl xl:max-w-7xl container">
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 768: 2, 1280: 3 }}
@@ -79,4 +58,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SearchPage;

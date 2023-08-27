@@ -4,6 +4,7 @@ const {
   signupUser,
   getAlldata,
   userInfo,
+  updateUserProfile,
   connectUser,
 } = require("../controllers/userController");
 const requireAuth = require("../middleware/requireAuth");
@@ -39,10 +40,16 @@ router.get("/", getAlldata);
 // GET user details
 router.get("/info/:_id", getUser, userInfo);
 
+// Update user details
+router.patch("/:_id", requireAuth, getUser, updateUserProfile);
 
-
-// connect
 router.put("/connect", requireAuth, connectUser);
+
+router.get('/pending/:_id', getUser, async (req, res) => {
+  const data = await res.user.populate('pendingReq');
+  console.log(data.pendingReq, 'user50');
+  res.send(data.pendingReq);
+})
 
 router.get('/search/:query', async (req, res) => {
   const query = req.params.query;

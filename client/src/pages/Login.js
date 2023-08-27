@@ -13,7 +13,7 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-row justify-around">
       <div className="w-full md:w-[500px] h-screen p-2 px-8 bg-white">
         <h1 className="text-7xl font-semibold mt-16 mb-8 font-tulpen">
           DEVCONNECT
@@ -39,7 +39,7 @@ function Login() {
           />
 
           <button
-            // disabled={isLoading}
+            disabled={isLoading}
             className="bg-black text-white px-5 py-2 rounded-md"
           >
             LOGIN
@@ -56,11 +56,12 @@ function Login() {
           </Link>
         </div>
       </div>
-      <div className="bg-landing-image h-full w-[50%]">
+      <div>
         <img
+          className="block h-[60%] mt-20"
           src="./loginImg.svg"
           alt="Background"
-        // className="object-cover overflow-hidden h-full w-full rotate-180 -z-20 absolute top-0 right-0"
+          // className="object-cover overflow-hidden h-full w-full rotate-180 -z-20 absolute top-0 right-0"
         />
       </div>
     </div>
