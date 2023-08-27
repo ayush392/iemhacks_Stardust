@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://iemhacks-devconnect.netlify.app/static/css/main.5293cf22.css",
+    "main.js": "https://iemhacks-devconnect.netlify.app/static/js/main.3e500f43.js",
+    "index.html": "https://iemhacks-devconnect.netlify.app/index.html",
+    "main.5293cf22.css.map": "https://iemhacks-devconnect.netlify.app/static/css/main.5293cf22.css.map",
+    "main.3e500f43.js.map": "https://iemhacks-devconnect.netlify.app/static/js/main.3e500f43.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5293cf22.css",
+    "static/js/main.3e500f43.js"
+  ]
+}
