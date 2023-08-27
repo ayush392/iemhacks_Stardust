@@ -12,13 +12,13 @@ function SearchPage() {
   const [currUser, setCurrUser] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/user/search/${query}`)
+    fetch(`https://devconnect-server.onrender.com/api/user/search/${query}`)
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((e) => console.log(e));
 
     user &&
-      fetch(`http://localhost:4000/api/user/info/${user?.id}`)
+      fetch(`https://devconnect-server.onrender.com/api/user/info/${user?.id}`)
         .then((res) => res.json())
         .then((json) => {
           setCurrUser(json);

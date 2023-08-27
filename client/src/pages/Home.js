@@ -12,13 +12,13 @@ function Home() {
   const [currUser, setCurrUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/user")
+    fetch("https://devconnect-server.onrender.com/api/user")
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((e) => console.log(e));
 
     user &&
-      fetch(`http://localhost:4000/api/user/info/${user?.id}`)
+      fetch(`https://devconnect-server.onrender.com/api/user/info/${user?.id}`)
         .then((res) => res.json())
         .then((json) => {
           setCurrUser(json);
