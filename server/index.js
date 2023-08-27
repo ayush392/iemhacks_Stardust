@@ -18,13 +18,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", userRoutes);
 
 const _dirname = path.resolve();
-// console.log(__dirname);
+// console.log(path.join(_dirname, "..", "client/build"));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname, "../client/build"))); // frontend build folder
+  app.use(express.static(path.join(_dirname, "..", "client/build"))); // frontend build folder
   app.get(
     "*",
     (req, res) =>
-      res.sendFile(path.resolve(_dirname, "client", "build", "index.html")) // any route that is not api route
+      res.sendFile(
+        path.resolve(_dirname, "..", "client", "build", "index.html")
+      ) // any route that is not api route
   );
 } else {
   app.get("/", (req, res) => {
