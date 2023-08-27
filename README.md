@@ -2,17 +2,19 @@
 
 ## Setup
 
-### client setup
+### Fork and clone the repository
+
+### Client setup
 
 - cd client
 - npm install
-- npm run
+- npm start
 
 ### Server setup
 
 - cd server
 - npm install
-- npm run
+- npm start
 
 ## Project Motivation
 
