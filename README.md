@@ -2,13 +2,17 @@
 
 ## Setup
 
-cd client
-npm install
-npm run
+### client setup
 
-cd server
-npm install
-npm run
+- cd client
+- npm install
+- npm run
+
+### Server setup
+
+- cd server
+- npm install
+- npm run
 
 ## Project Motivation
 
