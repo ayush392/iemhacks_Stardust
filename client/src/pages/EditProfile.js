@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 function EditProfile() {
-  // const url = `http://localhost:4000/api/user`
+  // const url = `https://devconnect-rwj2.onrender.com/api/user`
   const navigate = useNavigate();
   const { state } = useLocation();
   const data = state.userInfo;
@@ -52,27 +52,30 @@ function EditProfile() {
     e.preventDefault();
     console.log(formData, 33);
     try {
-      const response = await fetch(`http://localhost:4000/api/user/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          fullName,
-          bio,
-          isAvailable: ischecked,
-          college,
-          degree,
-          fieldOfStudy,
-          edu_from,
-          edu_to,
-          linkedin,
-          portfolio,
-          github,
-          skills,
-        }),
-      });
+      const response = await fetch(
+        `https://devconnect-rwj2.onrender.com/api/user/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            fullName,
+            bio,
+            isAvailable: ischecked,
+            college,
+            degree,
+            fieldOfStudy,
+            edu_from,
+            edu_to,
+            linkedin,
+            portfolio,
+            github,
+            skills,
+          }),
+        }
+      );
       if (response.ok) {
         navigate(-1);
       }

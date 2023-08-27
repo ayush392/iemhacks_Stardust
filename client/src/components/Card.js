@@ -30,18 +30,21 @@ const Card = ({ data, currUser, setCurrUser }) => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:4000/api/user/connect", {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          id: user.id,
-          connectTo: id,
-          status: status,
-        }),
-      });
+      const res = await fetch(
+        "https://devconnect-rwj2.onrender.com/api/user/connect",
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            id: user.id,
+            connectTo: id,
+            status: status,
+          }),
+        }
+      );
       const response = await res.json();
       console.log(response);
       setCurrUser(response);

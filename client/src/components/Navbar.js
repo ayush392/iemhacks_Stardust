@@ -11,7 +11,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/user/info/${user?.id}`)
+    fetch(`https://devconnect-rwj2.onrender.com/api/user/info/${user?.id}`)
       .then((res) => res.json())
       .then((json) => setCurrUser(json))
       .catch((e) => console.log(e));

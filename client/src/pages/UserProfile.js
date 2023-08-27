@@ -5,7 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const UserProfile = () => {
   const { id } = useParams();
   const { user } = useAuthContext();
-  const url = `http://localhost:4000/api/user/info/${id}`;
+  const url = `https://devconnect-rwj2.onrender.com/api/user/info/${id}`;
   const [userInfo, setUserInfo] = useState();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const UserProfile = () => {
 
   const addConnection = () => {
     console.log(user.id, id, "userprofile20");
-    fetch(`http://localhost:4000/api/user/connect`, {
+    fetch(`https://devconnect-rwj2.onrender.com/api/user/connect`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -51,7 +51,11 @@ const UserProfile = () => {
             <div className="flex px-2 md:px-10">
               <div className="w-1/4">
                 <div className="mb-4 ">
-                  <img className="rounded-lg shadow-lg" src={userInfo?.profile_img} alt="profile-img" />
+                  <img
+                    className="rounded-lg shadow-lg"
+                    src={userInfo?.profile_img}
+                    alt="profile-img"
+                  />
                 </div>
                 <div className="mb-4 ">
                   <div className="text-lg md:text-3xl font-medium text-grey-darkest">
@@ -63,10 +67,15 @@ const UserProfile = () => {
                 </div>
                 <div className="pb-6 border-b">
                   <a href="#" className="no-underline text-xs md:text-sm">
-                    {userInfo?.bio.charAt(101) == false ? userInfo?.bio : userInfo?.bio.slice(0, 100) + "..."}
+                    {userInfo?.bio.charAt(101) == false
+                      ? userInfo?.bio
+                      : userInfo?.bio.slice(0, 100) + "..."}
                   </a>
                 </div>
-                <a href="#" className="flex items-center justify-start text-left space-x-1 py-4 mb-4 border-b">
+                <a
+                  href="#"
+                  className="flex items-center justify-start text-left space-x-1 py-4 mb-4 border-b"
+                >
                   <svg
                     className="fill-current text-grey-dark w-4 h-4 flex-shrink-0"
                     width="24"
@@ -137,19 +146,37 @@ const UserProfile = () => {
                 </div>*/}
                 <div className="border p-4 rounded flex flex-col shadow-xl">
                   <div className="w-1/2  pb-2 pl-1 font-normal text-grey-darkest">
-                    Github Stats of <a href={`https://github.com/${userInfo?.username}`} className="font-semibold italic text-lg">{userInfo?.username}</a>
+                    Github Stats of{" "}
+                    <a
+                      href={`https://github.com/${userInfo?.username}`}
+                      className="font-semibold italic text-lg"
+                    >
+                      {userInfo?.username}
+                    </a>
                   </div>
                   <div className="flex flex-row flex-wrap items-start">
-                    <img src={`https://github-readme-stats.vercel.app/api?username=${userInfo?.username}&show_icons=true&locale=en`} alt=".." className="mr-4 mb-4" />
-                    <img src={`https://github-readme-stats.vercel.app/api/top-langs?username=${userInfo?.username}&show_icons=true&locale=en&layout=compact`} alt=".." className="mb-4" />
+                    <img
+                      src={`https://github-readme-stats.vercel.app/api?username=${userInfo?.username}&show_icons=true&locale=en`}
+                      alt=".."
+                      className="mr-4 mb-4"
+                    />
+                    <img
+                      src={`https://github-readme-stats.vercel.app/api/top-langs?username=${userInfo?.username}&show_icons=true&locale=en&layout=compact`}
+                      alt=".."
+                      className="mb-4"
+                    />
                   </div>
-                  <img src={`https://github-readme-streak-stats.herokuapp.com/?user=${userInfo?.username}`} alt=".." className="" />
+                  <img
+                    src={`https://github-readme-streak-stats.herokuapp.com/?user=${userInfo?.username}`}
+                    alt=".."
+                    className=""
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 };

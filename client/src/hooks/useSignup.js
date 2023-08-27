@@ -12,11 +12,14 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:4000/api/user/signup", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email, password, username, fullName }),
-    });
+    const response = await fetch(
+      "https://devconnect-rwj2.onrender.com/api/user/signup",
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ email, password, username, fullName }),
+      }
+    );
 
     const json = await response.json();
 
