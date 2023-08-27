@@ -5,6 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const Card = ({ data, currUser, setCurrUser }) => {
   const { user } = useAuthContext();
   const [status, setStatus] = useState("");
+  const [maxChar, setMaxChar] = useState(50);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -129,7 +130,11 @@ const Card = ({ data, currUser, setCurrUser }) => {
   return (
     <>
       {console.log(currUser, "card51")}
-      <div className="border-[1px] border-gray-300 rounded-xl p-4 max-w-[400px] bg-white bg-opacity-80 cardnew shadow-lg group relative hover:scale-105 hover:shadow-2xl  transition-all">
+      <div
+        className="border-[1px] border-gray-300 rounded-xl p-4 max-w-[400px] bg-white bg-opacity-80 cardnew shadow-lg group relative hover:scale-105 hover:shadow-2xl  transition-all"
+        onMouseEnter={() => setMaxChar(200)}
+        onMouseLeave={() => setMaxChar(50)}
+      >
         <Link
           to={`/user/${data._id}`}
           className="flex flex-row space-x-5 justify-start pb-2 rounded-xl card-text"
@@ -160,9 +165,9 @@ const Card = ({ data, currUser, setCurrUser }) => {
         <div>
           {
             <p className="text-sm mx-2 ">
-              {data?.bio.charAt(51) == false
+              {data?.bio.charAt(maxChar + 1) == false
                 ? data?.bio
-                : data?.bio.slice(0, 50) + "..."}
+                : data?.bio.slice(0, maxChar) + "..."}
             </p>
           }
           {data.skills.length > 0 && (

@@ -30,7 +30,7 @@ function SearchPage() {
   return (
     <>
       <div className="px-3 mx-auto max-w-7xl">
-        <h1>{query}</h1>
+        <h1>Search results for: {query}</h1>
         <div className="m-auto max-w-sm md:max-w-3xl xl:max-w-7xl container">
           <ResponsiveMasonry
             columnsCountBreakPoints={{ 350: 1, 768: 2, 1280: 3 }}

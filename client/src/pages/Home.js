@@ -38,16 +38,6 @@ function Home() {
             >
               {currUser?.fullName}
             </Link>
-            <button
-              onClick={() =>
-                navigate(`/edit/${currUser._id}`, {
-                  state: { userInfo: currUser },
-                })
-              }
-            >
-              Edit
-            </button>
-            {/* <Link to={`/edit/${currUser._id}`} className="text-sm">Edit Profile</Link> */}
           </div>
         ) : (
           <h3 className="">Loading...</h3>
